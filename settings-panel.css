@@ -1,0 +1,33 @@
+/* Lucas. Settings must remain usable even while the appearance is disabled. */
+#vc-extension-settings { box-sizing: border-box; width: 100%; min-width: 0; margin: 0 0 14px; color: #f5e5f2; font: 14px/1.6 'Microsoft YaHei','PingFang SC',sans-serif; }
+#vc-extension-settings > .inline-drawer { width: 100%; min-width: 0; border: 1px solid #ab78a94d; border-radius: 9px; background: #211a29; overflow: hidden; }
+#vc-extension-settings .vc-panel-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; margin: 0; background: linear-gradient(110deg,#43223f,#292033); border: 0; border-radius: 0; box-shadow: none; text-shadow: none; cursor: pointer; }
+#vc-extension-settings .vc-panel-title { flex: 1 1 auto; min-width: 0; }
+#vc-extension-settings .vc-panel-title b { display: block; color: #f6d3ed; font-size: 15px; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
+#vc-extension-settings .vc-panel-title small { display: block; color: #c9aac8; font: 11px/1.6 Consolas,monospace; letter-spacing: .6px; }
+#vc-extension-settings .inline-drawer-icon { flex: 0 0 auto; font-size: 18px; color: #e7b2db; }
+#vc-extension-settings .inline-drawer-content { padding: 0; margin: 0; width: 100%; min-width: 0; }
+#vc-extension-settings .vc-panel-body { box-sizing: border-box; display: flex; flex-direction: column; gap: 14px; padding: 15px 14px 13px; width: 100%; min-width: 0; }
+#vc-extension-settings .vc-panel-description { margin: 0; color: #d3bfd1; font-size: 13px; line-height: 1.75; text-shadow: none; overflow-wrap: anywhere; }
+#vc-extension-settings .vc-panel-actions { display: flex; flex-wrap: wrap; gap: 10px; width: 100%; min-width: 0; align-items: stretch; }
+#vc-extension-settings .vc-panel-actions > button.menu_button {
+ box-sizing: border-box !important; display: flex !important;
+ flex: 1 1 calc(50% - 5px) !important; width: auto !important;
+ min-width: min(100%,150px) !important; max-width: 100% !important;
+ height: auto !important; min-height: 42px !important;
+ padding: 10px 12px !important; margin: 0 !important;
+ align-items: center; justify-content: center; gap: 7px;
+ writing-mode: horizontal-tb !important; text-orientation: mixed !important;
+ white-space: nowrap !important; word-break: normal !important; overflow-wrap: normal !important;
+ border: 1px solid #ba8bb55c; border-radius: 5px;
+ background: #34273d; color: #f6e7f2; box-shadow: none; text-shadow: none;
+ font: 500 14px/1.4 'Microsoft YaHei','PingFang SC',sans-serif; letter-spacing: 0;
+ cursor: pointer;
+}
+#vc-extension-settings .vc-panel-actions > .vc-panel-primary { background: #754465; border-color: #d6a1ca; color: #fff4fc; }
+#vc-extension-settings .vc-panel-actions > button:hover { background: #50334f; border-color: #e2aed8; }
+#vc-extension-settings .vc-panel-actions > button:focus-visible { outline: 2px solid #efbde5; outline-offset: 2px; }
+#vc-extension-settings .vc-panel-rights { display: flex; align-items: baseline; flex-wrap: wrap; gap: 5px 10px; padding-top: 11px; border-top: 1px dashed #a479a044; font-size: 11px; line-height: 1.6; color: #c4aac1; }
+#vc-extension-settings .vc-panel-rights b { color: #f0c4e4; font: 600 12px/1.6 Consolas,monospace; letter-spacing: .8px; }
+#vc-appearance .vc-dialog-credit { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 12px; padding-top: 12px; margin-top: 14px; border-top: 1px dashed #ad7d9d55; color: #cba7c1; font: 11px/1.6 'Microsoft YaHei',sans-serif; }
+#vc-appearance .vc-dialog-credit b { color: #f1c0e3; font-family: Consolas,monospace; letter-spacing: .8px; }

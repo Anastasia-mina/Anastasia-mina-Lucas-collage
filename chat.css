@@ -1,0 +1,135 @@
+/* Conversation bubbles and compact composer. Real message controls stay native. */
+body.vc-enabled.vc-conversation #chat { gap: 20px; padding-block: 14px 25px; }
+body.vc-enabled #chat .mes.vc-chat-message:is([is_user='true'],[is_user='false']) {
+ --vc-bubble-bg: 24 14 39; --vc-bubble-edge: #d78bc777;
+ --vc-bubble-accent: #f2a2df; --vc-bubble-glint: #fdc6ee;
+ display: flex; flex-direction: row; align-items: flex-start; gap: 13px;
+ width: 96%; max-width: 100%; min-width: 0; align-self: flex-start;
+ margin: 0; padding: 0 !important; border: 0 !important;
+ border-radius: 0; background: transparent !important; box-shadow: none;
+ overflow: visible; clip-path: none; color: #f3e3f3;
+}
+body.vc-enabled #chat .mes.vc-chat-message[is_user='true'] {
+ --vc-bubble-bg: 16 25 43; --vc-bubble-edge: #8fbcde77;
+ --vc-bubble-accent: #a6d4f4; --vc-bubble-glint: #c7e7ff;
+ flex-direction: row-reverse; width: 88%; align-self: flex-end;
+}
+body.vc-enabled[data-vc-mode='day'] #chat .mes.vc-chat-message { --vc-bubble-bg: 40 25 48; }
+body.vc-enabled[data-vc-mode='day'] #chat .mes.vc-chat-message[is_user='true'] { --vc-bubble-bg: 26 36 56; }
+body.vc-enabled #chat .vc-chat-message > .mes_block {
+ position: relative; isolation: isolate; flex: 1 1 0; width: auto;
+ min-width: 0; max-width: 100%; margin: 0; padding: 29px 20px 34px;
+ border: 1px solid var(--vc-bubble-edge); border-top-color: var(--vc-bubble-glint);
+ border-radius: 14px 14px 14px 4px;
+ background: repeating-linear-gradient(0deg,#f8a1df04 0 1px,transparent 1px 4px),linear-gradient(125deg,#f98fe20c,transparent 60%),rgb(var(--vc-bubble-bg) / var(--vc-alpha));
+ box-shadow: 0 5px 16px #08061223,inset 0 1px 0 #ffe8fc0a;
+ backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+ overflow: visible;
+}
+body.vc-enabled #chat .vc-chat-message[is_user='true'] > .mes_block {
+ border-radius: 14px 14px 4px 14px;
+ background: repeating-linear-gradient(0deg,#a5d5ff04 0 1px,transparent 1px 4px),linear-gradient(225deg,#9dd9ff0c,transparent 60%),rgb(var(--vc-bubble-bg) / var(--vc-alpha));
+}
+body.vc-enabled #chat .vc-chat-message > .mes_block::before {
+ content: 'SIDE A / INCOMING'; position: absolute; left: 20px; right: 20px; top: 10px;
+ height: 8px; padding-left: 35px; color: #deb6d198;
+ font: 8px/8px Consolas,monospace; letter-spacing: 1.5px; text-align: right;
+ background: radial-gradient(circle at 3px 4px,#efa4d8 0 2px,transparent 2.7px),radial-gradient(circle at 13px 4px,#b4a4ed 0 2px,transparent 2.7px),radial-gradient(circle at 23px 4px,#89c5df 0 2px,transparent 2.7px);
+ pointer-events: none;
+}
+body.vc-enabled #chat .vc-chat-message[is_user='true'] > .mes_block::before { content: 'SIDE B / OUTGOING'; color: #b8d5e598; }
+body.vc-enabled #chat .vc-chat-message > .mes_block::after {
+ content: ''; position: absolute; top: 43px; left: -6px; width: 10px; height: 10px;
+ background: rgb(var(--vc-bubble-bg) / var(--vc-alpha));
+ border-left: 1px solid var(--vc-bubble-edge); border-bottom: 1px solid var(--vc-bubble-edge);
+ transform: rotate(45deg); pointer-events: none;
+}
+body.vc-enabled #chat .vc-chat-message[is_user='true'] > .mes_block::after { left: auto; right: -6px; transform: rotate(225deg); }
+body.vc-enabled #chat .vc-chat-message .mesAvatarWrapper {
+ --avatar-base-width: 46px; --avatar-base-height: 46px;
+ flex: 0 0 46px; width: 46px; min-width: 46px; padding: 25px 0 0;
+ text-align: center;
+}
+body.vc-enabled #chat .vc-chat-message .avatar,
+body.vc-enabled #chat .vc-chat-message .avatar img {
+ width: 46px; height: 46px; border-radius: 11px;
+}
+body.vc-enabled #chat .vc-chat-message .avatar img { border: 1px solid var(--vc-bubble-edge); box-shadow: 0 0 0 3px #170d232b; }
+body.vc-enabled #chat .vc-chat-message :is(.mesIDDisplay,.mes_timer,.tokenCounterDisplay) { color: #bba5c2; font: 10px/1.6 Consolas,monospace; }
+body.vc-enabled #chat .vc-chat-message .ch_name { gap: 8px; margin: 0 0 11px; align-items: center; min-height: 23px; }
+body.vc-enabled #chat .vc-chat-message .name_text { color: var(--vc-bubble-accent); font-size: .96em; font-weight: 600; letter-spacing: .3px; }
+body.vc-enabled #chat .vc-chat-message .timestamp { color: #c6aec5; font-size: 10px; opacity: .72; margin-left: 5px; }
+body.vc-enabled #chat .vc-chat-message .mes_text { min-width: 0; padding: 0; line-height: 1.85; color: #f0e2f0; overflow-wrap: anywhere; word-break: normal; }
+body.vc-enabled #chat .vc-chat-message .mes_text p { margin: 0 0 .75em; }
+body.vc-enabled #chat .vc-chat-message .mes_text > :last-child { margin-bottom: 0; }
+body.vc-enabled #chat .vc-chat-message .mes_text :is(em,i) { color: #d8b6cf; }
+body.vc-enabled #chat .vc-chat-message .mes_text q { color: #bdbbfb; }
+body.vc-enabled #chat .vc-chat-message[is_user='true'] .mes_text :is(em,i) { color: #b6cce1; }
+body.vc-enabled #chat .vc-chat-message .mes_text strong { color: #fff0fb; }
+body.vc-enabled #chat .vc-chat-message .mes_text blockquote { border-left: 2px solid var(--vc-bubble-accent); background: #f5b6e807; margin-inline: 0; padding: 8px 12px; }
+body.vc-enabled #chat .vc-chat-message :is(.mes_text,.mes_reasoning) pre { max-width: 100%; overflow-x: auto; padding: 12px; border: 1px solid var(--vc-bubble-edge); border-radius: 7px; background: #090b1899; }
+body.vc-enabled #chat .vc-chat-message :is(.mes_text,.mes_reasoning) pre code { white-space: pre; overflow-wrap: normal; word-break: normal; }
+body.vc-enabled #chat .vc-chat-message .mes_text table { display: block; max-width: 100%; overflow-x: auto; }
+body.vc-enabled #chat .vc-chat-message :is(.mes_text img,.mes_media_wrapper,.mes_file_wrapper) { max-width: 100%; }
+body.vc-enabled #chat .vc-chat-message .mes_buttons .mes_button { color: #e0c1db; font-size: 13px; opacity: .65; }
+body.vc-enabled #chat .vc-chat-message .mes_buttons .mes_button:hover { color: var(--vc-bubble-accent); opacity: 1; }
+body.vc-enabled #chat .vc-chat-message :is(.edit_textarea,.reasoning_edit_textarea) { width: 100%; max-width: 100%; min-height: 110px; padding: 11px; border: 1px solid var(--vc-bubble-edge); border-radius: 6px; background: #101322cc; color: #f5eaf4; line-height: 1.8; }
+body.vc-enabled #chat .vc-chat-message .mes_edit_buttons { max-width: 100%; flex-wrap: wrap; gap: 5px; }
+body.vc-enabled #chat .vc-chat-message .swipeRightBlock { right: 13px; bottom: 8px; }
+body.vc-enabled #chat .vc-chat-message .swipe_left { left: 69px; bottom: 12px; }
+body.vc-enabled #chat .vc-chat-message :is(.swipe_left,.swipe_right) { color: var(--vc-bubble-accent); font-size: 17px; opacity: .75; }
+body.vc-enabled #chat .vc-chat-message .swipes-counter { color: #c3abc1; font-size: 10px; opacity: .8; }
+body.vc-enabled #chat .vc-chat-message.selected > .mes_block { outline: 2px solid var(--vc-bubble-accent); outline-offset: 3px; }
+
+/* Keep a compact single-line starting height; native multiline growth still works. */
+body.vc-enabled #form_sheld { padding: 11px 10px 9px; }
+body.vc-enabled #send_form { min-height: 46px; }
+body.vc-enabled #send_form::before { inset: -11px -14px; }
+body.vc-enabled #send_form::after { top: -12px; left: 12px; width: 10px; height: 27px; border-width: 1.5px; border-radius: 7px; }
+body.vc-enabled #nonQRFormItems { align-items: center; column-gap: 4px; }
+body.vc-enabled #send_textarea {
+ box-sizing: border-box; min-width: 0; min-height: 46px; height: 46px;
+ max-height: min(190px,35dvh); padding: 9px 8px;
+ font: 20px/1.35 'VC Hand','KaiTi',cursive;
+ font-size: calc(20px * var(--vc-type-scale,1));
+ overflow-y: auto;
+}
+body.vc-enabled #leftSendForm { align-items: center; padding: 3px 7px; gap: 5px; }
+body.vc-enabled #leftSendForm > div { width: 29px; height: 33px; }
+body.vc-enabled #rightSendForm { align-items: center; padding: 2px 4px; gap: 5px; }
+body.vc-enabled #options_button { font-size: 20px; }
+body.vc-enabled #extensionsMenuButton { font-size: 17px; }
+body.vc-enabled #rightSendForm #send_but {
+ box-sizing: border-box; width: 42px; height: 42px; min-width: 42px; flex: 0 0 42px;
+ padding: 8px; margin: 0; border: 1.5px solid #f3b8e9; border-radius: 50%;
+ box-shadow: 0 0 5px #f75edc8c,inset 0 0 8px #ed54d329;
+ background: #39122c66;
+}
+body.vc-enabled #send_but::before { filter: drop-shadow(0 0 2px #ff66dc); }
+body.vc-enabled #send_form .mes_stop { min-width: 38px; min-height: 38px; font-size: 23px; }
+
+@media (max-width: 550px) {
+ body.vc-enabled.vc-conversation #chat { gap: 16px; padding-inline: 9px; }
+ body.vc-enabled #chat .mes.vc-chat-message:is([is_user='true'],[is_user='false']) { width: 100%; gap: 9px; }
+ body.vc-enabled #chat .mes.vc-chat-message[is_user='true'] { width: 95%; }
+ body.vc-enabled #chat .vc-chat-message > .mes_block { padding: 26px 13px 31px; border-radius: 11px 11px 11px 3px; }
+ body.vc-enabled #chat .vc-chat-message[is_user='true'] > .mes_block { border-radius: 11px 11px 3px 11px; }
+ body.vc-enabled #chat .vc-chat-message > .mes_block::before { left: 13px; right: 13px; font-size: 7px; letter-spacing: .8px; }
+ body.vc-enabled #chat .vc-chat-message .mesAvatarWrapper { --avatar-base-width: 34px; --avatar-base-height: 34px; flex-basis: 34px; width: 34px; min-width: 34px; padding-top: 31px; }
+ body.vc-enabled #chat .vc-chat-message .avatar,body.vc-enabled #chat .vc-chat-message .avatar img { width: 34px; height: 34px; border-radius: 9px; }
+ body.vc-enabled #chat .vc-chat-message .ch_name { gap: 5px; margin-bottom: 9px; }
+ body.vc-enabled #chat .vc-chat-message .timestamp { font-size: 9px; margin-left: 2px; }
+ body.vc-enabled #chat .vc-chat-message .mes_text { line-height: 1.8; }
+ body.vc-enabled #chat .vc-chat-message .swipe_left { left: 51px; }
+ body.vc-enabled #form_sheld { padding: 9px 8px 8px; }
+ body.vc-enabled #send_form { min-height: 42px; }
+ body.vc-enabled #send_form::before { inset: -9px -10px; }
+ body.vc-enabled #send_form::after { width: 8px; height: 22px; left: 7px; top: -10px; }
+ body.vc-enabled #send_textarea { min-height: 42px; height: 42px; font-size: calc(17px * var(--vc-type-scale,1)); line-height: 1.3; padding: 8px 4px; }
+ body.vc-enabled #leftSendForm { padding: 2px 4px; gap: 2px; }
+ body.vc-enabled #leftSendForm > div { width: 25px; height: 30px; }
+ body.vc-enabled #rightSendForm { padding: 2px 3px; gap: 3px; }
+ body.vc-enabled #rightSendForm #send_but { width: 36px; height: 36px; min-width: 36px; flex-basis: 36px; padding: 7px; }
+ body.vc-enabled #options_button { font-size: 18px; }
+ body.vc-enabled #extensionsMenuButton { font-size: 15px; }
+}
